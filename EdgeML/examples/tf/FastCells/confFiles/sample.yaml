@@ -1,0 +1,56 @@
+# This is a sample YAML file for fault injection configuration for FAST cell examples
+# The meaning of labels and their allowed values are explained for your choosing
+
+# "Artifact" specifies the model parameter to inject
+# 1. For FastGRNN and FastRNN cells, "Artifact" values can be:
+#    - "0" - Corresponds to first set of W parameters for FAST GRNN cell
+#    - "1" - Corresponds to first set of U parameters for FAST GRNN cell
+
+# 2. For UGRNN, "Artifact" values can be:
+#    - "0" - Corresponds to first set of W parameters
+#    - "1" - Corresponds to second set of W parameters
+#    - "2" - Corresponds to first set of U parameters
+#    - "3" - Corresponds to second set of U parameters
+
+# 3. For GRU, "Artifact" values can be:
+#    - "0" - Corresponds to first set of W parameters
+#    - "1" - Corresponds to second set of W parameters
+#    - "2" - Corresponds to third set of W parameters
+#    - "3" - Corresponds to first set of U parameters
+#    - "4" - Corresponds to second set of U parameters
+#    - "5" - Corresponds to third set of U parameters
+
+# 4. For LSTM, "Artifact" values can be:
+#    - "0" - Corresponds to first set of W parameters
+#    - "1" - Corresponds to second set of W parameters
+#    - "2" - Corresponds to third set of W parameters
+#    - "3" - Corresponds to fourth set of W parameters
+#    - "4" - Corresponds to first set of U parameters
+#    - "5" - Corresponds to second set of U parameters
+#    - "6" - Corresponds to third set of U parameters
+#    - "7" - Corresponds to fourth set of U parameters
+
+Artifact: 0
+
+
+# "Type" specifies the type of fault injector to call
+#  - "shuffle" - Shuffles the artifact tensor values randomly
+#  - "mutate"  - Single bit flips in "Bit" position to selected "Amount" of tensor values
+#  - "zeros"   - Updates chosen "Amount" percentage of artifact tensor values to zeros
+
+Type: shuffle
+
+
+# "Amount" specifies the amount of injection in "Artifact"
+#  - Do specify an integer value between 1 and 100
+# 1. When "mutate" type is selected, "Amount" corresponds to the actual number of values
+# 2. When "zeros" type is selected, "Amount" corresponds to the percentage of total values
+
+Amount: 1
+
+
+# "Bit" specifies the bit position to be flipped when "mutate" type is selected
+#  - Default "N" corresponds to the position chosen randomly
+#  - Can specify an integer value between 0 and 31 as "Artifact" tensor values are single precision floats
+
+Bit: N
